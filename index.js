@@ -22,7 +22,7 @@ bot.on('message', (e) => {
     let msg = e.message.text
     const userId = e.source.userId
     console.log(userId)
-    let replyMsg = ''
+    let replyMsg = '主人說什麼?@u@ 我不太了解喵。'
     let url = ''
 
     if (msg.indexOf('幫') !== -1) {
@@ -37,17 +37,17 @@ bot.on('message', (e) => {
       url = ORIG_URL + 'beauty'
     }
 
-    // if (msg.indexOf('八卦') !== -1) {
-    //   url = ORIG_URL + '八卦'
-    // }
+    if (msg.indexOf('八卦') !== -1) {
+      url = ORIG_URL + '八卦'
+    }
     
 
     if (url) {
       e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
       getInfo(tempUrl)
+      e.reply(replyMsg)
     } else {
-      replyMsg = '主人說什麼?@u@ 我不太了解喵。'
       e.reply(replyMsg)
     }
 
@@ -63,7 +63,7 @@ bot.on('message', (e) => {
         }).get()
         console.log(list)
         replyMsg = list[1].title
-        bot.push(userId, replyMsg)
+        // bot.push(userId, replyMsg)
       })
     }
 
