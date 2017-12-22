@@ -60,7 +60,10 @@ bot.on('message', (e) => {
           }
         }).get()
         list.forEach((obj) => {
-          replyMsg += `<a href=${obj.link}>${obj.title}</a>\n`
+          replyMsg += `
+            ${obj.title}\n
+            ${obj.link}\n
+          `
         })
         ev.reply(replyMsg)
       })
