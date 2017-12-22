@@ -22,8 +22,12 @@ bot.on('message', (e) => {
     let replyMsg = ''
     let url = ''
 
-    if (msg === '幫') {
-      replyMsg = `幫忙資訊`
+    if (msg.indexOf('表特') !== -1) {
+      replyMsg = '幫忙資訊!'
+    }
+
+    if (msg.indexOf('喵') !== -1) {
+      replyMsg = '喵喵~!'
     }
 
     if (msg.indexOf('表特') !== -1) {
@@ -39,11 +43,6 @@ bot.on('message', (e) => {
       e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
       getInfo(tempUrl)
-      // getPageIndex(tempUrl, (pageList) => {
-      //   async.map(pageList, (page, callback) => {
-      //     getInfo(page)
-      //   }).then(sendData())
-      // })
     } else {
       replyMsg = '主人說什麼?@u@ 我不太了解喵。'
       sendData()
@@ -59,17 +58,7 @@ bot.on('message', (e) => {
       })
     }
 
-    // function getPageIndex(url, callback) {
-    //   request(url, (err, res, body) => {
-    //     const $ = cheerio.load(body)
-    //     const prev = $('.btn-group-paging a').eq(1).attr('href').match(/\d+/)[0]
-    //     const pageList = [prev, prev - 1]
-    //     callback(pageList)
-    //   })
-    // }
-
     function getInfo(url) {
-      // tempUrl = url + '/index' + page + '.html'
       request(url, (err, res, body) => {
         const $ = cheerio.load(body)
         let list = $('.r-ent a').map((index, obj) => {
@@ -79,26 +68,9 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
-        replyMsg += list
-        console.log(list)
-      }).then(sendData())
+        sendData()
+      })
     }
-  
-
-    // if (!data.borad || !data.filter || !data.pageRange) {
-    //   e.reply(`資料格式錯誤喵~ \\n 您的資料長成這樣子呦! \\n 板名: ${data.borad || '沒有資料'}，篩選名稱: ${data.filter || '沒有資料'}，頁數: ${data.pageRange || '沒有資料'}`).then((data) => {
-    //     return
-    //   }).catch((err) => {
-    //     return
-    //   })
-
-    // } else {
-    //   e.reply('開始認真爬文喵~!')
-    // }
-
-    // titleFilter = data.filter
-    // pageNum = data.pageRange
-
 
   } else {
     e.reply('請輸入文字喵~ 可以輸入"幫"，讓我為主人解釋使用方式!')
@@ -112,17 +84,3 @@ const server = app.listen(process.env.PORT || 8080, () => {
   const port = server.address().port
   console.log("App now running on port", port)
 })
-
-// function getTopPages(callback) {
-//   request(`${ORIG_URL}/${data.borad}/index.html`, (err, res, body) => {
-//     const $ = cheerio.load(body)
-//     const prev = $('.btn-group-paging a').eq(1).attr('href').match(/\d+/)[0]
-//     const pageList = []
-//     let i
-//     pageList.push('')
-//     for (i = 0; i < data.pageRange - 1; i += 1) {
-//       pageList.push(prev - i)
-//     }
-//     callback(pageList)
-//   })
-// }
