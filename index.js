@@ -45,7 +45,6 @@ bot.on('message', (e) => {
       // e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
       getInfo(tempUrl)
-      // e.reply(replyMsg)
     } else {
       e.reply(replyMsg)
     }
@@ -61,8 +60,8 @@ bot.on('message', (e) => {
           }
         }).get()
         console.log(list)
-        replyMsg = list[1].title
-        ev.reply(replyMsg)
+        replyMsg = `<a href="${list[0]}.link">${list[0].title}<a><br>`
+        // ev.reply(replyMsg)
         bot.push(userId, replyMsg)
       })
     }
