@@ -61,8 +61,7 @@ bot.on('message', (e) => {
         }).get()
         console.log(list)
         replyMsg = `<a href="${list[0]}.link">${list[0].title}<a><br>`
-        // ev.reply(replyMsg)
-        bot.push(userId, replyMsg)
+        ev.reply(replyMsg)
       })
     }
 
