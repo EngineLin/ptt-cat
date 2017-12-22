@@ -58,7 +58,8 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
-        replyMsg = JSON.stringify(list)
+        console.log(list)
+        replyMsg = list[1].title
         sendData()
       })
     }
