@@ -18,10 +18,9 @@ const ORIG_URL = 'https://www.ptt.cc/bbs/'
 
 bot.on('message', (e) => {
   if (e.message.type === 'text') {
-    console.log(e)
+    let ev = e
     let msg = e.message.text
     const userId = e.source.userId
-    console.log(userId)
     let replyMsg = '主人說什麼?@u@ 我不太了解喵。'
     let url = ''
 
@@ -46,7 +45,7 @@ bot.on('message', (e) => {
       // e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
       getInfo(tempUrl)
-      e.reply(replyMsg)
+      // e.reply(replyMsg)
     } else {
       e.reply(replyMsg)
     }
@@ -63,7 +62,8 @@ bot.on('message', (e) => {
         }).get()
         console.log(list)
         replyMsg = list[1].title
-        // bot.push(userId, replyMsg)
+        ev.reply(replyMsg)
+        bot.push(userId, replyMsg)
       })
     }
 
