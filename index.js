@@ -10,7 +10,14 @@ const linebotParser = bot.parser()
 
 
 bot.on('message', (e) => {
-  console.log(e)
+  if (e.message.type = 'text') {
+    let msg = e.message.text
+    e.reply(msg).then((data) => {
+      console.log(data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  }
 })
 
 app.post('/', linebotParser)
