@@ -8,31 +8,19 @@ const app = express()
 const bot = linebot({
   channelId: 1553044439,
   channelSecret: '486c25f854227f214defba78cbb0bf26',
-  channelAccessToken: 'ef63f71C7YwPu2mxk2a/NxFiXmU9ufXOkXqjzymWAboU0lYgpgv2pUal5KQwFa/cBs+ln+JcVVzcBwIeFkGlwQdiZoAa+P8ohPF/HJogYMywjh6bcuTQCkyszyVJkd9lpetjzgIWO+YFAYmfUcjh/QdB04t89/1O/w1cDnyilFU=',
+  channelAccessToken: 'ef63f71C7YwPu2mxk2a/NxFiXmU9ufXOkXqjzymWAboU0lYgpgv2pUal5KQwFa/cBs+ln+JcVVzcBwIeFkGlwQdiZoAa+P8ohPF/HJogYMywjh6bcuTQCkyszyVJkd9lpetjzgIWO+YFAYmfUcjh/QdB04t89/1O/w1cDnyilFU='
 })
 
-// const regex = /\@(.*)\.(.*)\.(.*)/
 const linebotParser = bot.parser()
 const ORIG_URL = 'https://www.ptt.cc/bbs/'
-const data
-// let titleFilter = ''
-// let indexNum = ''
-// let pageNum
+
 
 
 bot.on('message', (e) => {
-  lineEvent = e
   if (e.message.type === 'text') {
     let msg = e.message.text
     let replyMsg = ''
     let url = ''
-
-    // const tag = msg.match(regex)
-    // data = {
-    //   borad: tag[1],
-    //   filter: tag[2],
-    //   pageRange: tag[3]
-    // }
 
     if (msg === '幫') {
       replyMsg = `幫忙資訊`
@@ -61,6 +49,7 @@ bot.on('message', (e) => {
     
     function sendData() {
       // 傳送資料
+      console.log(e)
       e.reply(replyMsg).then((data)=> {
         console.log(data)
       }).catch((err) => {
