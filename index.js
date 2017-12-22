@@ -1,3 +1,6 @@
+// const request = require('request')
+// const cheerio = require('cheerio')
+// const async = require('async')
 const linebot = require('linebot')
 const express = require('express')
 const app = express()
@@ -11,13 +14,14 @@ const linebotParser = bot.parser()
 
 bot.on('message', (e) => {
   const regex = /\.(.*)\.(.*)\.(.*)/g
-  const tag = msg.Match(regex)
-  const borad = tag[1]
-  const filter = tag[2]
-  const pageRange = tag[3]
 
   if (e.message.type = 'text') {
     let msg = e.message.text
+    const tag = msg.Match(regex)
+    const borad = tag[1]
+    const filter = tag[2]
+    const pageRange = tag[3]
+
     if (msg === '幫') {
       e.reply('幫忙資訊').then((data) => {
         console.log(data)
@@ -27,8 +31,10 @@ bot.on('message', (e) => {
         return
       })
     }
+    
+    console.log(tag)
 
-    e.reply(JSON.stringify({borad: borad, filter: filter, pageRange: pageRange})).then((data) => {
+    e.reply(msg).then((data) => {
       console.log(data)
     }).catch((err) => {
       console.log(err)
