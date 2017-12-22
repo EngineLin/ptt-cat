@@ -47,16 +47,6 @@ bot.on('message', (e) => {
       replyMsg = '主人說什麼?@u@ 我不太了解喵。'
       sendData()
     }
-    
-    function sendData() {
-      // 傳送資料
-      console.log(e)
-      e.reply(replyMsg).then((data)=> {
-        console.log(data)
-      }).catch((err) => {
-        console.log(err)
-      })
-    }
 
     function getInfo(url) {
       request(url, (err, res, body) => {
@@ -68,7 +58,17 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
+        replyMsg = JSON.stringify(list)
         sendData()
+      })
+    }
+
+    function sendData() {
+      // 傳送資料
+      e.reply(replyMsg).then((data)=> {
+        console.log(data)
+      }).catch((err) => {
+        console.log(err)
       })
     }
 
