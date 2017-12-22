@@ -36,14 +36,16 @@ bot.on('message', (e) => {
     
 
     if (url) {
+      e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
-      getPageIndex(tempUrl, (pageList) => {
-        async.map(pageList, (page, callback) => {
-          getInfo(page)
-        }).then(sendData())
-      })
+      getInfo(tempUrl)
+      // getPageIndex(tempUrl, (pageList) => {
+      //   async.map(pageList, (page, callback) => {
+      //     getInfo(page)
+      //   }).then(sendData())
+      // })
     } else {
-      replyMsg = '主人說什麼?@u@ 我不太了解耶。'
+      replyMsg = '主人說什麼?@u@ 我不太了解喵。'
       sendData()
     }
     
@@ -66,8 +68,8 @@ bot.on('message', (e) => {
       })
     }
 
-    function getInfo(page) {
-      tempUrl = url + '/index' + page + '.html'
+    function getInfo(url) {
+      // tempUrl = url + '/index' + page + '.html'
       request(url, (err, res, body) => {
         const $ = cheerio.load(body)
         let list = $('.r-ent a').map((index, obj) => {
@@ -76,9 +78,9 @@ bot.on('message', (e) => {
             link: $(obj).attr('href'),
             timestamp: $(obj).attr('href').substr(14, 10),
           }
-          replyMsg += list
-          console.log(list)
         }).get()
+        replyMsg += list
+        console.log(list)
       })
     }
   
@@ -99,7 +101,7 @@ bot.on('message', (e) => {
 
 
   } else {
-    e.reply('請輸入利用文字輸入喵~ 可以輸入"幫"，讓我為主人解釋使用方式!')
+    e.reply('請輸入文字喵~ 可以輸入"幫"，讓我為主人解釋使用方式!')
   }
 })
 
