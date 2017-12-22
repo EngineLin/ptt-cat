@@ -19,14 +19,15 @@ const ORIG_URL = 'https://www.ptt.cc/bbs/'
 bot.on('message', (e) => {
   if (e.message.type === 'text') {
     let msg = e.message.text
+    const userId = e.source.userId
     let replyMsg = ''
     let url = ''
 
-    if (msg.indexOf('表特') !== -1) {
+    if (msg.indexOf('幫') != -1) {
       replyMsg = '幫忙資訊!'
     }
 
-    if (msg.indexOf('喵') !== -1) {
+    if (msg.indexOf('喵') != -1) {
       replyMsg = '喵喵~!'
     }
 
@@ -49,7 +50,11 @@ bot.on('message', (e) => {
     }
 
     function getInfo(url) {
-      request(url, (err, res, body) => {
+      request({ url: url, method: "GET" }, (err, res, body) => {
+        if (err || !body) {
+          return
+        }
+
         const $ = cheerio.load(body)
         let list = $('.r-ent a').map((index, obj) => {
           return {
@@ -60,7 +65,7 @@ bot.on('message', (e) => {
         }).get()
         console.log(list)
         replyMsg = list[1].title
-        sendData()
+        bot.push(userId, replyMsg)
       })
     }
 
