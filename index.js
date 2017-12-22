@@ -59,14 +59,14 @@ bot.on('message', (e) => {
       })
     }
 
-    function getPageIndex(url, callback) {
-      request(url, (err, res, body) => {
-        const $ = cheerio.load(body)
-        const prev = $('.btn-group-paging a').eq(1).attr('href').match(/\d+/)[0]
-        const pageList = [prev, prev - 1]
-        callback(pageList)
-      })
-    }
+    // function getPageIndex(url, callback) {
+    //   request(url, (err, res, body) => {
+    //     const $ = cheerio.load(body)
+    //     const prev = $('.btn-group-paging a').eq(1).attr('href').match(/\d+/)[0]
+    //     const pageList = [prev, prev - 1]
+    //     callback(pageList)
+    //   })
+    // }
 
     function getInfo(url) {
       // tempUrl = url + '/index' + page + '.html'
@@ -81,7 +81,7 @@ bot.on('message', (e) => {
         }).get()
         replyMsg += list
         console.log(list)
-      })
+      }).then(sendData())
     }
   
 
