@@ -59,8 +59,9 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
-        console.log(list)
-        replyMsg = `<a href="${list[0]}.link">${list[0].title}<a><br>`
+        list.forEach((obj) => {
+          replyMsg += `<a href=${obj.link}>${obj.title}</a>\n`
+        })
         ev.reply(replyMsg)
       })
     }
