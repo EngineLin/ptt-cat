@@ -101,17 +101,12 @@ function getInfo(url) {
       }
     }).get()
 
-    // 利用時間過濾
-    // list = list.filter((post) => {
-    //   return post.timestamp > (Date.now() / 1000 - CrontabPeriod)
-    // })
-
     // 利用用標題過濾
     list = list.filter((post) => {
       return post.title.indexOf(titleFilter) !== -1
     })
 
-    lineEvent.reply(list)
+    console.log(list)
 
     if (i < pageNum) {
       i += 1
