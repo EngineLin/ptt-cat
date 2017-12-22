@@ -10,9 +10,31 @@ const linebotParser = bot.parser()
 
 
 bot.on('message', (e) => {
+  const regex = /\.(.*)\.(.*)\.(.*)/g
+  const tag = msg.Match(regex)
+  const borad = tag[1]
+  const filter = tag[2]
+  const pageRange = tag[3]
+
   if (e.message.type = 'text') {
     let msg = e.message.text
-    e.reply(msg).then((data) => {
+    if (msg === '幫') {
+      e.reply('幫忙資訊').then((data) => {
+        console.log(data)
+        return
+      }).catch((err) => {
+        console.log(err)
+        return
+      })
+    }
+
+    e.reply(JSON.stringify({borad: borad, filter: filter, pageRange: pageRange})).then((data) => {
+      console.log(data)
+    }).catch((err) => {
+      console.log(err)
+    })
+  } else {
+    e.reply('請輸入利用文字輸入喵~ 使用方式請輸入: PTT版名稱.篩選名稱.頁數 。篩選名稱如果輸入"全"則會抓取全部文章，頁數最多只能10頁喵~').then((data) => {
       console.log(data)
     }).catch((err) => {
       console.log(err)
