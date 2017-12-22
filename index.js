@@ -14,7 +14,7 @@ const linebotParser = bot.parser()
 
 
 bot.on('message', (e) => {
-  if (e.message.type = 'text') {
+  if (e.message.type === 'text') {
     let msg = e.message.text
     const tag = msg.Match(regex)
     console.log(tag)
@@ -40,7 +40,7 @@ bot.on('message', (e) => {
     //   console.log(err)
     // })
   } else {
-    e.reply('請輸入利用文字輸入喵~ 使用方式請輸入: PTT版名稱.篩選名稱.頁數 。篩選名稱如果輸入"全"則會抓取全部文章，頁數最多只能10頁喵~').then((data) => {
+    e.reply('請輸入利用文字輸入喵~ 使用方式請輸入: @PTT版名稱.篩選名稱.頁數 。篩選名稱如果輸入"全"則會抓取全部文章，頁數最多只能10頁喵~').then((data) => {
       console.log(data)
     }).catch((err) => {
       console.log(err)
