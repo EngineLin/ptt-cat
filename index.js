@@ -25,7 +25,14 @@ bot.on('message', (e) => {
     let url = ''
 
     if (msg.indexOf('幫') !== -1) {
-      replyMsg = '幫忙資訊!'
+      replyMsg = `
+      為主人解釋使用方法喵~!\n
+      請直接輸入想要查詢的板名，我就會為主人追最新的文章呦。\n
+      目前提供搜尋的板有:\n
+      "表特版"、"八卦版"、"NBA版"、"股票版"、"性版"、"LoL版"、"棒球版"、"女版"、"手機板"、"電影版"、"韓星版"\n
+      因為訓練我的人能力不夠，目前支援度不高真是抱歉喵~
+      在一次輸入"幫"，我就會再解說一次給主人聽喵~@u@!
+      `
     }
 
     if (msg.indexOf('喵') !== -1) {
@@ -42,7 +49,7 @@ bot.on('message', (e) => {
       url = ORIG_URL + 'Gossiping'
     }
 
-    if (msg.indexOf('NBA') !== -1) {
+    if (msg.indexOf('NBA') !== -1 || msg.indexOf('nba') !== -1) {
       msg = 'NBA版'
       url = ORIG_URL + 'NBA'
     }
@@ -57,14 +64,14 @@ bot.on('message', (e) => {
       url = ORIG_URL + 'sex'
     }
 
-    if (msg.indexOf('lol') !== -1) {
+    if (msg.indexOf('lol') !== -1 || msg.indexOf('LOL') !== -1 || msg.indexOf('英雄') !== -1 || msg.indexOf('聯盟') !== -1) {
       msg = 'LoL版'
       url = ORIG_URL + 'LoL'
     }
 
     if (msg.indexOf('棒球') !== -1) {
-      msg = 'Baseball'
-      url = ORIG_URL + '棒球'
+      msg = '棒球版'
+      url = ORIG_URL + 'Baseball'
     }
 
     if (msg.indexOf('女') !== -1) {
