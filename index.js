@@ -50,11 +50,7 @@ bot.on('message', (e) => {
     }
 
     function getInfo(url) {
-      request({ url: url, method: "GET" }, (err, res, body) => {
-        if (err || !body) {
-          return
-        }
-
+      request(url, (err, res, body) => {
         const $ = cheerio.load(body)
         let list = $('.r-ent a').map((index, obj) => {
           return {
