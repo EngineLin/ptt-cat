@@ -43,7 +43,7 @@ bot.on('message', (e) => {
     
 
     if (url) {
-      e.reply('為了主人，努力爬文喵~!')
+      // e.reply('為了主人，努力爬文喵~!')
       tempUrl = url + '/index.html'
       getInfo(tempUrl)
       e.reply(replyMsg)
