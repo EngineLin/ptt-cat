@@ -33,10 +33,12 @@ bot.on('message', (e) => {
     }
 
     if (msg.indexOf('表特') !== -1) {
+      msg = '表特版'
       url = ORIG_URL + 'beauty'
     }
 
     if (msg.indexOf('八卦') !== -1) {
+      msg = '八卦版'
       url = ORIG_URL + '八卦'
     }
     
@@ -59,10 +61,11 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
+        replyMsg = `努力為主人追了"${msg}"的最新文章，求摸摸喵~\n`
         list.forEach((obj) => {
           replyMsg += `
             ${obj.title}\n
-            ${obj.link}\n
+            https://www.ptt.cc${obj.link}\n
           `
         })
         ev.reply(replyMsg)
