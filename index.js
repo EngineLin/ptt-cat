@@ -39,7 +39,52 @@ bot.on('message', (e) => {
 
     if (msg.indexOf('八卦') !== -1) {
       msg = '八卦版'
-      url = ORIG_URL + '八卦'
+      url = ORIG_URL + 'Gossiping'
+    }
+
+    if (msg.indexOf('NBA') !== -1) {
+      msg = 'NBA版'
+      url = ORIG_URL + 'NBA'
+    }
+
+    if (msg.indexOf('股') !== -1) {
+      msg = '股票版'
+      url = ORIG_URL + 'Stock'
+    }
+
+    if (msg.indexOf('性') !== -1) {
+      msg = '性版'
+      url = ORIG_URL + 'sex'
+    }
+
+    if (msg.indexOf('lol') !== -1) {
+      msg = 'LoL版'
+      url = ORIG_URL + 'LoL'
+    }
+
+    if (msg.indexOf('棒球') !== -1) {
+      msg = 'Baseball'
+      url = ORIG_URL + '棒球'
+    }
+
+    if (msg.indexOf('女') !== -1) {
+      msg = '女版'
+      url = ORIG_URL + 'WomenTalk'
+    }
+
+    if (msg.indexOf('手機') !== -1) {
+      msg = '手機板'
+      url = ORIG_URL + 'MobileComm'
+    }
+
+    if (msg.indexOf('電影') !== -1) {
+      msg = '電影版'
+      url = ORIG_URL + 'movie'
+    }
+
+    if (msg.indexOf('韓') !== -1) {
+      msg = '韓星版'
+      url = ORIG_URL + 'KoreaStar'
     }
     
 
@@ -61,6 +106,9 @@ bot.on('message', (e) => {
             timestamp: $(obj).attr('href').substr(14, 10),
           }
         }).get()
+        list.filter((obj) => {
+          return obj.title.indexOf('公告') !== -1
+        })
         replyMsg = `努力為主人追了"${msg}"的最新文章，求摸摸喵~\n`
         list.forEach((obj) => {
           replyMsg += `
