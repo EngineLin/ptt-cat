@@ -18,16 +18,18 @@ const ORIG_URL = 'https://www.ptt.cc/bbs/'
 
 bot.on('message', (e) => {
   if (e.message.type === 'text') {
+    console.log(e)
     let msg = e.message.text
     const userId = e.source.userId
+    console.log(userId)
     let replyMsg = ''
     let url = ''
 
-    if (msg.indexOf('幫') != -1) {
+    if (msg.indexOf('幫') !== -1) {
       replyMsg = '幫忙資訊!'
     }
 
-    if (msg.indexOf('喵') != -1) {
+    if (msg.indexOf('喵') !== -1) {
       replyMsg = '喵喵~!'
     }
 
@@ -35,9 +37,9 @@ bot.on('message', (e) => {
       url = ORIG_URL + 'beauty'
     }
 
-    if (msg.indexOf('八卦') !== -1) {
-      url = ORIG_URL + '八卦'
-    }
+    // if (msg.indexOf('八卦') !== -1) {
+    //   url = ORIG_URL + '八卦'
+    // }
     
 
     if (url) {
@@ -46,7 +48,7 @@ bot.on('message', (e) => {
       getInfo(tempUrl)
     } else {
       replyMsg = '主人說什麼?@u@ 我不太了解喵。'
-      sendData()
+      e.reply(replyMsg)
     }
 
     function getInfo(url) {
@@ -62,15 +64,6 @@ bot.on('message', (e) => {
         console.log(list)
         replyMsg = list[1].title
         bot.push(userId, replyMsg)
-      })
-    }
-
-    function sendData() {
-      // 傳送資料
-      e.reply(replyMsg).then((data)=> {
-        console.log(data)
-      }).catch((err) => {
-        console.log(err)
       })
     }
 
