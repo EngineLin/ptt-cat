@@ -49,7 +49,7 @@ bot.on('message', (e) => {
       url = ORIG_URL + 'Gossiping'
     }
 
-    if (msg.indexOf('NBA') !== -1 || msg.indexOf('nba') !== -1) {
+    if (msg.indexOf('NBA') !== -1 || msg.indexOf('nba') !== -1 || msg.indexOf('籃球') !== -1) {
       msg = 'NBA版'
       url = ORIG_URL + 'NBA'
     }
